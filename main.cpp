@@ -3,7 +3,6 @@
 #include "calculator.h"
 #include <algorithm>
 #include <numeric>
-#include <ctime>
 
 void addbutton(Button* button)
 {
@@ -31,8 +30,8 @@ void initsetting()
 	BeginBatchDraw();
 	Button* Init = new Button;
 	Init->SetButtonLine(WHITE);
-	Init->AddButton(100, 300, 300, 50, WHITE, "¿ªÊ¼");
-	Init->AddButton(50, 10, 400, 200, WHITE, "¼ÆËãÆ÷0.1","»ªÎÄçúçê");
+	Init->AddButton(100, 300, 300, 50, WHITE, "å¼€å§‹");
+	Init->AddButton(50, 10, 400, 200, WHITE, "è®¡ç®—å™¨0.1","åŽæ–‡ç¥ç€");
 	
 	while (!Init->getIsClick())
 	{
@@ -53,7 +52,6 @@ void initsetting()
 	cleardevice();
 }
 
-
 int main()
 {
 	initgraph(500, 480);
@@ -61,7 +59,7 @@ int main()
 	
 
 	HWND hwnd = GetHWnd();
-	SetWindowText(hwnd, _T("calcultor"));
+	SetWindowText(hwnd, "calcultor");
 
 	setbkcolor(WHITE);
 	cleardevice();
@@ -69,13 +67,13 @@ int main()
 	Button* button = new Button;
 	Calculator  calculate;
 	addbutton(button);
-	string formula;                   //¹«Ê½
-	bool IsSign = false;              //ÅÐ¶ÏÊÇ·ñ°´ÏÂÔËËã·ûºÅ
+	string formula;                   //å…¬å¼
+	bool IsSign = false;              //åˆ¤æ–­æ˜¯å¦æŒ‰ä¸‹è¿ç®—ç¬¦å·
 
 	BeginBatchDraw();
 	while (1)
 	{
-		line(8*formula.size(), 12, 8*formula.size(), 28);
+		line(textwidth(formula.c_str())+8, 12, textwidth(formula.c_str())+8, 28);
 		button->MouseOperate();
 		button->PrintText();
 		if (!button->gettext().empty())
